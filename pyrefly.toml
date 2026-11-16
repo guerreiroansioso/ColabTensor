@@ -1,0 +1,8 @@
+project-includes = ["Src", "Tests", "Run.py"]
+search-path = ["Src"]
+ignore-missing-imports = [
+    "fastapi",
+    "pydantic",
+    "huggingface_hub",
+    "pplx_decider",
+]

@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "colabtensor"
+version = "0.1.0"
+description = "Serve gpt-oss-120b and pplx-decider-v1.1 (Q4 GGUF) on a Colab G4 via llama.cpp, exposed with localtunnel."
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["Src"]
+
+[tool.ruff]
+line-length = 80
+target-version = "py310"
+src = ["Src"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors (E501: line-too-long)
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "N",    # pep8-naming (N801: PascalCase classes)
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify (reduce if/else)
+    "C90",  # mccabe complexity
+    "PL",   # pylint (complexity limits)
+    "RET",  # flake8-return
+    "C4",   # flake8-comprehensions
+    "TID",  # flake8-tidy-imports
+]
+ignore = [
+    # camelCase is the project standard for functions, arguments and variables
+    "N802",  # invalid-function-name
+    "N803",  # invalid-argument-name
+    "N806",  # non-lowercase-variable-in-function
+    "N815",  # mixed-case-variable-in-class-scope
+    "N816",  # mixed-case-variable-in-global-scope
+    "N999",  # invalid-module-name (project uses PascalCase file names)
+]
+
+[tool.ruff.lint.pylint]
+max-args = 5
+max-branches = 8
+max-locals = 10
+max-returns = 4
+max-statements = 40
+
+[tool.ruff.lint.mccabe]
+max-complexity = 8
+
+[tool.pytest.ini_options]
+python_files = ["Test*.py"]
+pythonpath = ["Src"]
